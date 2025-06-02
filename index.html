@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherSphere - Accurate Weather Forecasts</title>
+    <!-- Font Awesome (Weather Icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header class="main-header">
+        <div class="container">
+            <nav class="main-nav">
+                <div class="logo">
+                    <i class="fas fa-cloud-sun"></i> WeatherSphere
+                </div>
+                <ul class="nav-list">
+                    <li><a href="#current">Current</a></li>
+                    <li><a href="#forecast">Forecast</a></li>
+                    <li><a href="#hourly">Hourly</a></li>
+                    <li><a href="#marine">Marine</a></li>
+                    <li><a href="#alerts">Alerts</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="location-input" placeholder="Search for a city..." class="search-input">
+                    <button id="search-btn" class="btn search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <button id="location-btn" class="btn btn-outline"><i class="fas fa-location-arrow"></i> Current Location</button>
+                <div class="unit-toggle">
+                    <button class="unit-btn active" data-unit="metric">°C</button>
+                    <button class="unit-btn" data-unit="imperial">°F</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Current Weather Section -->
+    <section id="current" class="current-section section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Current Weather</h2>
+                <p class="last-updated" id="last-updated">Last updated: --</p>
+            </div>
+            
+            <div class="current-weather-grid">
+                <!-- Main Weather Card -->
+                <div class="weather-card main-card">
+                    <div class="weather-header">
+                        <h3 id="current-location">--</h3>
+                        <p class="current-date" id="current-date">--</p>
+                    </div>
+                    <div class="weather-content">
+                        <div class="weather-icon">
+                            <div class="icon-container" id="current-icon">
+                                <i class="fas fa-question"></i>
+                            </div>
+                            <p id="current-condition">--</p>
+                        </div>
+                        <div class="weather-temp">
+                            <span id="current-temp">--</span><span class="unit-symbol">°C</span>
+                        </div>
+                        <div class="weather-details">
+                            <div class="detail-item">
+                                <i class="fas fa-temperature-high"></i>
+                                <div>
+                                    <span class="detail-label">Feels Like</span>
+                                    <span id="feels-like">--</span><span class="unit-symbol">°C</span>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-wind"></i>
+                                <div>
+                                    <span class="detail-label">Wind</span>
+                                    <span id="wind-speed">--</span><span class="wind-unit"> km/h</span>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-tint"></i>
+                                <div>
+                                    <span class="detail-label">Humidity</span>
+                                    <span id="humidity">--</span>%
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-compress-alt"></i>
+                                <div>
+                                    <span class="detail-label">Pressure</span>
+                                    <span id="pressure">--</span> <span class="pressure-unit">mb</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Additional Weather Info -->
+                <div class="additional-info-grid">
+                    <div class="info-card">
+                        <h3><i class="fas fa-sun"></i> UV Index</h3>
+                        <div class="uv-index" id="uv-index">--</div>
+                        <p class="uv-description" id="uv-description">--</p>
+                    </div>
+                    <div class="info-card">
+                        <h3><i class="fas fa-eye"></i> Visibility</h3>
+                        <p id="visibility">-- <span class="visibility-unit">km</span></p>
+                    </div>
+                    <div class="info-card">
+                        <h3><i class="fas fa-cloud-rain"></i> Precipitation</h3>
+                        <p id="precipitation">-- <span class="precip-unit">mm</span></p>
+                    </div>
+                    <div class="info-card">
+                        <h3><i class="fas fa-wind"></i> Wind Gusts</h3>
+                        <p id="wind-gust">-- <span class="wind-unit">km/h</span></p>
+                    </div>
+                    <div class="info-card">
+                        <h3><i class="fas fa-snowflake"></i> Dew Point</h3>
+                        <p id="dewpoint">--<span class="unit-symbol">°C</span></p>
+                    </div>
+                    <div class="info-card">
+                        <h3><i class="fas fa-cloud"></i> Cloud Cover</h3>
+                        <p id="cloud-cover">--%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Forecast Section -->
+    <section id="forecast" class="forecast-section section">
+        <div class="container">
+            <h2 class="section-title">5-Day Forecast</h2>
+            <div class="forecast-container" id="forecast-container">
+                <!-- Forecast cards will be inserted here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Hourly Forecast Section -->
+    <section id="hourly" class="hourly-section section">
+        <div class="container">
+            <h2 class="section-title">24-Hour Forecast</h2>
+            <div class="hourly-container" id="hourly-container">
+                <!-- Hourly forecast items will be inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Marine Weather Section -->
+    <section id="marine" class="marine-section section">
+        <div class="container">
+            <h2 class="section-title">Marine Weather</h2>
+            <div class="marine-container" id="marine-container">
+                <div class="marine-card">
+                    <h3><i class="fas fa-water"></i> Tides</h3>
+                    <div class="tide-container" id="tide-container">
+                        <!-- Tide data will be inserted here -->
+                    </div>
+                </div>
+                <div class="marine-card">
+                    <h3><i class="fas fa-wind"></i> Wave Conditions</h3>
+                    <div class="wave-container" id="wave-container">
+                        <!-- Wave data will be inserted here -->
+                    </div>
+                </div>
+                <div class="marine-card">
+                    <h3><i class="fas fa-temperature-low"></i> Water Temperature</h3>
+                    <p id="water-temp">--<span class="unit-symbol">°C</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Weather Alerts Section -->
+    <section id="alerts" class="alerts-section section">
+        <div class="container">
+            <h2 class="section-title">Weather Alerts</h2>
+            <div class="alerts-container" id="alerts-container">
+                <p>No active weather alerts for your location.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-cloud-sun"></i> WeatherSphere
+                </div>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Contact Us</a>
+                </div>
+                <div class="footer-attribution">
+                    <p>Weather data provided by <a href="https://www.weatherapi.com/" target="_blank">WeatherAPI.com</a></p>
+                    <p>&copy; <span id="current-year"></span> WeatherSphere. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
